@@ -21,13 +21,18 @@ header {
 img {
 	height: 80px;
 	width: auto;
-	object-fit: cover;
 }
 
 main {
 	flex-flow: column nowrap;
 	padding-top: 3rem;
 	gap: 1.5rem;
+}
+
+.balance {
+	text-align: center;
+	border: 1px solid black;
+	width: 80px;
 }
 
 .bank {
@@ -37,4 +42,9 @@ main {
 footer {
 	margin-top:
 }
+
+.svg-hat {
+	transform: translateX(15px);
+}
+
 
