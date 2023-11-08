@@ -1,0 +1,40 @@
+body {
+	font-size: 16px;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header {
+	width: 100%;
+	height: fit-content;
+}
+
+img {
+	height: 80px;
+	width: auto;
+	object-fit: cover;
+}
+
+main {
+	flex-flow: column nowrap;
+	padding-top: 3rem;
+	gap: 1.5rem;
+}
+
+.bank {
+	margin-bottom: 1rem;
+}
+
+footer {
+	margin-top:
+}
+
