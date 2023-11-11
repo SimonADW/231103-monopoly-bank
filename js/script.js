@@ -2,47 +2,51 @@ const buttons = document.querySelectorAll(".player");
 const input = document.querySelector("input");
 
 let transferAmount = 0;
-let currentSender = ""
-let currentReciever = ""
+let currentSender = "";
+let currentReciever = "";
 
-let bank = 0;
-let car = 0;
-let director = 0;
-let hat = 0;
-let iron = 0;
-let shoe = 0;
+const balances = {
+	bank: 100000,
+	car: 0,
+	director: 0,
+	hat: 0,
+	iron: 0,
+	shoe: 0,
+  };
 
 const getSenderOnPageLoad = ()=> {
 	const firstElement = document.querySelector(".player");
-	currentSender = firstElement.className.slice(6);
+	currentSender = firstElement.className.slice(7);
+	currentSender.trim();
 	return currentSender;
 };
 
 const getInputAmount = ()=> {
-	transferAmount = input.value;
+	transferAmount = input.valueAsNumber;
 	return transferAmount;
 };
 
 const getUserOnClick = () => {
-	currentReciever = event.currentTarget.className.slice(6);
+	currentReciever = event.currentTarget.className.slice(7);
+	currentReciever.trim();
 	return currentReciever;
 };
 
 const transferFunds = (sender, amount, reciever)=> {
-	document[sender] -= amount;
-	document[reciever] += amount;
+	balances[sender] -= amount;
+	balances[reciever] += amount;
 };
 
 const handleClick = () =>{
 	getUserOnClick(event);
-	transferFunds(currentSender, getInputAmount, getUserOnClick);
+	transferFunds(currentSender, getInputAmount(), currentReciever);
 };
 
 buttons.forEach(button => {
 	button.addEventListener("click", (event) => {
 		handleClick();
-		getInputAmount();
 		input.value = "";
+		console.log("balances:",balances);
 	})
 });
 
