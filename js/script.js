@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll(".player");
 const input = document.querySelector("input");
+const balanceDisplays = document.querySelectorAll(".balance");
 
 let transferAmount = 0;
 let currentSender = "";
@@ -37,9 +38,17 @@ const transferFunds = (sender, amount, reciever)=> {
 	balances[reciever] += amount;
 };
 
-const handleClick = () =>{
+const renderBalances = () => {
+	balanceDisplays.forEach((display)=> {
+		const currentPlayer = display.dataset.player;
+		display.textContent = balances[currentPlayer];
+	})
+}
+
+const handleClick = () => {
 	getUserOnClick(event);
 	transferFunds(currentSender, getInputAmount(), currentReciever);
+	renderBalances();
 };
 
 buttons.forEach(button => {
@@ -50,4 +59,7 @@ buttons.forEach(button => {
 	})
 });
 
+
+
 getSenderOnPageLoad();
+renderBalances();

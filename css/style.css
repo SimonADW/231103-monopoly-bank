@@ -1,3 +1,4 @@
+
 body {
 	font-size: 16px;
 	display: flex;
@@ -67,6 +68,13 @@ input {
 	border-style: none;
 	border: 2px solid red;
 	padding: 3px;
+}
+
+footer {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	margin-top: auto;
 }
 
 
