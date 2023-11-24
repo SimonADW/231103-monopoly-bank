@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll(".player");
+const resetButton = document.querySelector(".reset-funds");
 const input = document.querySelector("input");
 const balanceDisplays = document.querySelectorAll(".balance");
 
@@ -6,14 +7,38 @@ let transferAmount = 0;
 let currentSender = "";
 let currentReciever = "";
 
-const balances = {
-	bank: 100000,
-	car: 0,
-	director: 0,
-	hat: 0,
-	iron: 0,
-	shoe: 0,
-  };
+
+const getBalancesFromLocalStorage = () => {
+	balancesString = window.localStorage.getItem("balances");
+	return JSON.parse(balancesString);
+};
+
+const setBalancesInLocalStorage = ()=> {
+	window.localStorage.setItem("balances", JSON.stringify(balances));
+	console.log(window.localStorage.balances);
+};
+
+let balances = getBalancesFromLocalStorage();
+
+const setInitialBalances = ()=> {
+	balances = {
+		bank: 1000000,
+		car: 0,
+		director: 0,
+		hat: 0,
+	 	iron: 0,
+		shoe: 0,
+	  };
+	  window.localStorage.setItem("balances", JSON.stringify(balances));
+};
+
+// Reset balances button on frontpage
+if (window.location.pathname.includes("index.html")) {
+	resetButton.addEventListener("click", ()=> {
+		setInitialBalances();
+		renderBalances();
+	}) 
+};
 
 const getSenderOnPageLoad = ()=> {
 	const firstElement = document.querySelector(".player");
@@ -35,7 +60,7 @@ const getInputAmount = ()=> {
 };
 
 const getUserOnClick = () => {
-	currentReciever = event.currentTarget.className.slice(7);
+	currentReciever = event.currentTarget.className.slice(7).trim();
 	currentReciever.trim();
 	return currentReciever;
 };
@@ -50,12 +75,15 @@ const renderBalances = () => {
 		const currentPlayer = display.dataset.player;
 		display.textContent = balances[currentPlayer];
 	})
-}
+};
+
+
 
 const handleClick = () => {
-	getUserOnClick(event);
+	getUserOnClick(event);	
 	transferFunds(currentSender, getInputAmount(), currentReciever);
 	renderBalances();
+	setBalancesInLocalStorage();
 };
 
 buttons.forEach(button => {
@@ -66,7 +94,6 @@ buttons.forEach(button => {
 	})
 });
 
-
-
 getSenderOnPageLoad();
 renderBalances();
+
