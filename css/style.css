@@ -72,10 +72,17 @@ input {
 
 .input-error::placeholder {
 	color: red;	
+	font-size: larger;
 }
 
 .index-shoe {
 	margin-bottom: 2rem;
+}
+
+.reset-funds {
+	padding: 0.3rem 1rem;
+	color: red;
+	margin-bottom: 1rem;
 }
 
 footer {
