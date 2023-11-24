@@ -70,6 +70,14 @@ input {
 	padding: 3px;
 }
 
+.input-error::placeholder {
+	color: red;	
+}
+
+.index-shoe {
+	margin-bottom: 2rem;
+}
+
 footer {
 	height: 50px;
 	display: flex;

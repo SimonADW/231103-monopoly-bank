@@ -24,6 +24,13 @@ const getSenderOnPageLoad = ()=> {
 
 const getInputAmount = ()=> {
 	transferAmount = input.valueAsNumber;
+	if (isNaN(transferAmount)) {
+		transferAmount = 0;		
+		input.classList.add("input-error");
+		setTimeout(()=> {
+			input.classList.remove("input-error");
+		}, 1000);
+	}
 	return transferAmount;
 };
 
