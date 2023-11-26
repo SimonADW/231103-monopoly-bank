@@ -96,4 +96,3 @@ buttons.forEach(button => {
 
 getSenderOnPageLoad();
 renderBalances();
-
