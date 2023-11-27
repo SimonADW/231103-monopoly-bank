@@ -1,4 +1,5 @@
-const recipentsContainer = document.querySelector(".recipients-container");
+const recipientsContainer = document.querySelector(".recipients-container");
+const senderContainer = document.querySelector(".sender-container");
 
  function Player(imageUrl, className, dataPlayer, balanceClassName) {
 	this.imageUrl = imageUrl;
@@ -6,10 +7,25 @@ const recipentsContainer = document.querySelector(".recipients-container");
 	this.dataPlayer = dataPlayer;
 	this.balanceClassName = balanceClassName;
 
-	this.renderUser = function() {
+	this.renderReceivers = function() {
 		const currentPlayerDiv = document.createElement("div");
 		currentPlayerDiv.className = (this.className);
-		recipentsContainer.appendChild(currentPlayerDiv);
+		recipientsContainer.appendChild(currentPlayerDiv);
+		
+		const currentPlayerImage = document.createElement("img");
+		currentPlayerImage.src = this.imageUrl;
+		currentPlayerDiv.appendChild(currentPlayerImage);
+	
+		const currentBalanceDisplay = document.createElement("div");
+		currentBalanceDisplay.className = (this.balanceClassName);	
+		currentBalanceDisplay.textContent = "000";
+		currentPlayerDiv.appendChild(currentBalanceDisplay);
+		}	
+
+	this.renderSender = function() {
+		const currentPlayerDiv = document.createElement("div");
+		currentPlayerDiv.className = (this.className);
+		senderContainer.appendChild(currentPlayerDiv);
 		
 		const currentPlayerImage = document.createElement("img");
 		currentPlayerImage.src = this.imageUrl;
@@ -30,11 +46,41 @@ const recipentsContainer = document.querySelector(".recipients-container");
 
  const players = [car, director, iron, hat, shoe];
 
-const bankElement = {		 
-		className: "player bank fa-solid fa-building-columns",
-		dataPlayer: "bank",
+ 
+// Render current sender on top
+
+const playerIcons = document.querySelectorAll(".player");
+let currentSenderIcon = "";
+let currentReceivers = [];
+
+playerIcons.forEach((player)=> {
+	if (window.location.pathname.includes("index.html")) {
+		player.addEventListener("click", (event)=>{
+			currentSenderIcon = event.currentTarget.className.slice(7);
+			window.sessionStorage.setItem("currentSenderIcon", currentSenderIcon);
+		});
+	};	
+});
+
+const updateReceiversArray = ()=> {
+	currentSenderIcon = window.sessionStorage.getItem("currentSenderIcon");
+		currentReceivers = players.filter((player)=> {
+		return player.dataPlayer !== currentSenderIcon;
+	});
 }
 
+if (!window.location.pathname.includes("index.html")) {
+	updateReceiversArray();
+};
+
 players.forEach((player)=>{
-	player.renderUser();
+	if (player.dataPlayer === currentSenderIcon) {
+		player.renderSender()
+	};
+}
+)
+currentReceivers.forEach((player)=>{
+	player.renderReceivers();
 	});
+
+
