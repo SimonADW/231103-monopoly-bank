@@ -15,7 +15,6 @@ header {
 	width: 100%;
 }
 
-
 main {
 	display: flex;
 	flex-flow: column nowrap;
@@ -24,15 +23,12 @@ main {
 	gap: 2rem;	
 }
 
-
 .recipients-container {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	gap: 2rem;
 	margin-bottom: 2rem;
-
-
 }
 
 img {
@@ -40,15 +36,27 @@ img {
 	width: auto;
 }
 
-
 .balance {
 	text-align: center;
 	border: 1px solid black;
-	width: 80px;
+	width: fit-content;
+	min-width: 80px;
+	font-size: 24px;
+	padding: 1px 3px;
+}
+
+.player {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .bank {
 	margin-bottom: 1rem;
+}
+
+.bank-balance { 
+	margin-top: 0.5rem;
 }
 
 .svg-hat {
