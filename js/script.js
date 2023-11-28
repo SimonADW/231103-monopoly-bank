@@ -78,7 +78,6 @@ const renderBalances = () => {
 };
 
 
-
 const handleClick = () => {
 	getUserOnClick(event);	
 	transferFunds(currentSender, getInputAmount(), currentReciever);
