@@ -44,6 +44,7 @@ const iron = new Player("assets/images/iron.png","player iron","iron","balance i
 const hat = new Player("assets/images/tophat.png","player hat","hat","balance hat-balance");
 const shoe = new Player("assets/images/shoe.png","player shoe","shoe","balance shoe-balance");
 
+
 const players = [car, director, iron, hat, shoe];
 
  
