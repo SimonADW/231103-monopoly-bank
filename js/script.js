@@ -82,6 +82,7 @@ const handleClick = () => {
 	transferFunds(currentSender, getInputAmount(), currentReciever);
 	renderBalances();
 	setBalancesInLocalStorage();
+	window.location.href = "index.html";
 };
 
 buttons.forEach(button => {
