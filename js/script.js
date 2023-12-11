@@ -55,6 +55,10 @@ const getInputAmount = ()=> {
 		setTimeout(()=> {
 			input.classList.remove("input-error");
 		}, 1000);
+	} else {	
+		setTimeout(()=> {
+		window.location.href = "index.html";
+		}, 600)
 	}
 	return transferAmount;
 };
@@ -82,7 +86,6 @@ const handleClick = () => {
 	transferFunds(currentSender, getInputAmount(), currentReciever);
 	renderBalances();
 	setBalancesInLocalStorage();
-	window.location.href = "index.html";
 };
 
 buttons.forEach(button => {
